@@ -1,0 +1,12 @@
+*.class
+out/
+*.jar
+!gradle/wrapper/*.jar
+hs_err_pid*
+**/target
+target
+.gradle
+build
+.idea
+logs
+
