@@ -1,17 +1,12 @@
 package com.nowakowski.springmysql.book;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nowakowski.springmysql.user.User;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity(name = "Book")
 @Table(name = "book")
@@ -30,20 +25,12 @@ public class Book {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
-  @JsonIgnore
+  @JsonBackReference
   private User owner;
-
-  private String ownerName;
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof Book)) {
-      return false;
-    }
-    return id != null && id.equals(((Book) o).id);
+      return this == o || o instanceof Book && id != null && id.equals(((Book) o).id);
   }
 
   @Override

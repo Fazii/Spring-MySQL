@@ -1,8 +1,9 @@
 package com.nowakowski.springmysql.book;
 
 import com.nowakowski.springmysql.book.exceptrions.NoSuchBookException;
-import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 @Component
 public class BookService {

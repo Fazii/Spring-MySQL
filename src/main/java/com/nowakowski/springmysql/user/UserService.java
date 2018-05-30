@@ -4,18 +4,17 @@ import com.nowakowski.springmysql.book.Book;
 import com.nowakowski.springmysql.book.BookRepository;
 import com.nowakowski.springmysql.user.exceptions.NoSuchUserException;
 import com.nowakowski.springmysql.user.exceptions.UserWithGivenEmailAlreadyExistException;
-import java.util.Set;
-import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.util.Set;
 
 @Component
 public class UserService {
 
-  @Resource
-  private UserRepository userRepository;
+  @Resource private UserRepository userRepository;
 
-  @Resource
-  private BookRepository bookRepository;
+  @Resource private BookRepository bookRepository;
 
   public User addUser(String name, String email) {
     if (userRepository.existsUserByEmail(email)) {
@@ -44,7 +43,6 @@ public class UserService {
     user.setBooks(books);
 
     book.setOwner(user);
-    book.setOwnerName(name);
     bookRepository.save(book);
     return userRepository.save(user);
   }
